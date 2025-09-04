@@ -2,23 +2,58 @@
 FROM node:18-alpine AS build
 
 WORKDIR /app
+
+# Copy package.json และ lockfile
 COPY package*.json ./
-RUN npm install -g @quasar/cli
+
+# ติดตั้ง dependencies รวม devDependencies (ต้องใช้ตอน build)
+RUN npm install --include=dev
+
+# Copy source code ทั้งหมด
 COPY . .
 
+# Build Quasar project ผ่าน local CLI
 RUN npm run build
 
 # Stage 2: Nginx serve static files
 FROM nginx:1.25-alpine
+
+# ลบไฟล์ default ของ nginx
 RUN rm -rf /usr/share/nginx/html/*
+
+# Copy build result จาก stage แรก
 COPY --from=build /app/dist/spa /usr/share/nginx/html
 
-# (Optional) คัดลอก nginx.conf ถ้ามี custom
+# (Optional) ใช้ nginx.conf ถ้ามี custom
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
+
+
+
+# # Stage 1: Build Quasar App
 # FROM node:18-alpine AS build
+
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm install -g @quasar/cli
+# COPY . .
+
+# RUN npm run build
+
+# # Stage 2: Nginx serve static files
+# FROM nginx:1.25-alpine
+# RUN rm -rf /usr/share/nginx/html/*
+# COPY --from=build /app/dist/spa /usr/share/nginx/html
+
+# # (Optional) คัดลอก nginx.conf ถ้ามี custom
+# # COPY nginx.conf /etc/nginx/conf.d/default.conf
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
+
+# # FROM node:18-alpine AS build
 
 
 # WORKDIR /app
