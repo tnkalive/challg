@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install -g @quasar/cli
 COPY . .
 
-RUN quasar build
+RUN npm run build
 
 # Stage 2: Nginx serve static files
 FROM nginx:1.25-alpine
