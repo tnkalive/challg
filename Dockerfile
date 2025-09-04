@@ -11,10 +11,9 @@ RUN npm install --include=dev
 
 # Copy source code ทั้งหมด
 # คัดลอกไฟล์สำคัญ (quasar.config.js, src/, public/, ฯลฯ)
-COPY quasar.config.js ./
-COPY src ./src
-COPY public ./public
+COPY . .
 
+RUN ls -la && cat quasar.config.js || echo "no quasar.config.js"
 
 # Build Quasar project ผ่าน local CLI
 RUN npm run build
