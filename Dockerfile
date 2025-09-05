@@ -7,10 +7,12 @@ WORKDIR /app
 COPY package*.json ./
 
 # ติดตั้ง dependencies
-RUN yarn install
+RUN yarn add
 
 # ติดตั้ง quasar cli แยก global
-RUN yarn install -g @quasar/cli
+# RUN yarn install -g @quasar/cli
+RUN yarn global add @quasar/cli
+
 
 # Copy source code ทั้งหมด รวมถึง quasar.config.js
 COPY . .
