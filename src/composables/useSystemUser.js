@@ -7,28 +7,28 @@ export default function useSystemUser() {
   const baseUrl = process.env.BASE_URL;
   const logoutLoading = ref(false);
 
-  // const userConfigurations = computed(() => {
-  //   return !localStorage.getItem('pas_user_configurations') ? logout() : decrypt(localStorage.getItem("pas_user_configurations"));
-  // });
-  // const roles = computed(() => {
-  //   return userConfigurations.value.roles;
-  // });
-  // const employeeId = computed(() => {
-  //   return userConfigurations.value.employeeId;
-  // });
-  // const employeeFullName = computed(() => {
-  //   const { titleFullDescription, firstName, lastName } = userConfigurations.value;
-  //   return `${titleFullDescription} ${firstName} ${lastName}`;
-  // });
-  // const isAdmin = computed(() => {
-  //   return userConfigurations.value.isAdmin;
-  // });
-  // const isManager = computed(() => {
-  //   return userConfigurations.value.isManager;
-  // });
-  // const isSystemAdmin = computed(() => {
-  //   return userConfigurations.value.roles === '99';
-  // });
+  const userConfigurations = computed(() => {
+    return !localStorage.getItem('pas_user_configurations') ? logout() : decrypt(localStorage.getItem("pas_user_configurations"));
+  });
+  const roles = computed(() => {
+    return userConfigurations.value.roles;
+  });
+  const employeeId = computed(() => {
+    return userConfigurations.value.employeeId;
+  });
+  const employeeFullName = computed(() => {
+    const { titleFullDescription, firstName, lastName } = userConfigurations.value;
+    return `${titleFullDescription} ${firstName} ${lastName}`;
+  });
+  const isAdmin = computed(() => {
+    return userConfigurations.value.isAdmin;
+  });
+  const isManager = computed(() => {
+    return userConfigurations.value.isManager;
+  });
+  const isSystemAdmin = computed(() => {
+    return userConfigurations.value.roles === '99';
+  });
   async function login(params) {
     if (keycloak.authenticated) {
       if(keycloak.idTokenParsed.hr_business_area != 'C000'){
