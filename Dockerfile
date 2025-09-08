@@ -1,11 +1,11 @@
 # ssl-stage (New Stage)
 # สร้าง stage เพื่อคัดลอกไฟล์ SSL Certificate และ Key จาก Host
-FROM alpine:latest as ssl-stage
-# ตั้งค่า directory ที่เก็บไฟล์ SSL บน Host ของคุณ
-WORKDIR /ssl
-# คัดลอกไฟล์ SSL Certificate และ Private Key
-COPY ../nginx/ssl/nginx.crt /ssl/nginx.crt
-COPY ../nginx/ssl/nginx.key /ssl/nginx.key
+# FROM alpine:latest as ssl-stage
+# # ตั้งค่า directory ที่เก็บไฟล์ SSL บน Host ของคุณ
+# WORKDIR /ssl
+# # คัดลอกไฟล์ SSL Certificate และ Private Key
+# COPY ../nginx/ssl/nginx.crt /ssl/nginx.crt
+# COPY ../nginx/ssl/nginx.key /ssl/nginx.key
 # develop stage
 FROM node:lts-alpine  as develop-stage
 WORKDIR /app
@@ -16,6 +16,13 @@ COPY . .
 FROM develop-stage as build-stage
 RUN npm install
 RUN quasar build
+# ssl stage (สร้าง self-signed cert)
+FROM alpine:latest as ssl-stage
+RUN apk add --no-cache openssl \
+    && mkdir /ssl \
+    && openssl req -x509 -nodes -days 365 \
+       -subj "/C=TH/ST=Bangkok/L=Bangkok/O=Dev/OU=IT/CN=localhost" \
+       -newkey rsa:2048 -keyout /ssl/nginx.key -out /ssl/nginx.crt
 # production stage
 FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
