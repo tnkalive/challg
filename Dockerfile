@@ -8,6 +8,7 @@
 # COPY ../nginx/ssl/nginx.key /ssl/nginx.key
 # develop stage
 FROM node:lts-alpine  as develop-stage
+RUN apk add --no-cache python3 make g++ libc6-compat
 WORKDIR /app
 COPY package*.json ./
 RUN npm i -g @quasar/cli
