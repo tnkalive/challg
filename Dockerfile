@@ -30,6 +30,7 @@ COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
 # คัดลอกไฟล์ SSL จาก ssl-stage
 COPY --from=ssl-stage /ssl/nginx.crt /etc/nginx/ssl/nginx.crt
 COPY --from=ssl-stage /ssl/nginx.key /etc/nginx/ssl/nginx.key
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
 
