@@ -4,8 +4,8 @@ FROM alpine:latest as ssl-stage
 # ตั้งค่า directory ที่เก็บไฟล์ SSL บน Host ของคุณ
 WORKDIR /ssl
 # คัดลอกไฟล์ SSL Certificate และ Private Key
-COPY ../../nginx/ssl/nginx.crt /ssl/nginx.crt
-COPY ../../nginx/ssl/nginx.key /ssl/nginx.key
+COPY ../nginx/ssl/nginx.crt /ssl/nginx.crt
+COPY ../nginx/ssl/nginx.key /ssl/nginx.key
 # develop stage
 FROM node:lts-alpine  as develop-stage
 WORKDIR /app
