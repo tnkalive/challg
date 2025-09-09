@@ -1,3 +1,65 @@
+const SaveData = {
+  path: '/savedata',
+  component: () => import('layouts/MainLayout.vue'),
+  children: [
+    {
+      path: '',
+      component: () => import('pages/SaveDataPage/SaveData.vue'),
+      meta: { requiresAuth: false, roles: [] },
+    }
+  ]
+}
+
+const TransferData = {
+  path: '/transferdata',
+  component: () => import('layouts/MainLayout.vue'),
+  children: [
+    {
+      path: '',
+      component: () => import('pages/TransferDataPage/TransferData.vue'),
+      meta: { requiresAuth: false, roles: [] },
+    }
+  ]
+}
+
+const ManageData = {
+  path: '/managedata',
+  component: () => import('layouts/MainLayout.vue'),
+  children: [
+    {
+      path: '',
+      component: () => import('pages/ManageDataPage/ManageData.vue'),
+      meta: { requiresAuth: false, roles: [] },
+    }
+  ]
+}
+
+
+const ManageRole = {
+  path: '/managerole',
+  component: () => import('layouts/MainLayout.vue'),
+  children: [
+    {
+      path: '',
+      component: () => import('pages/ManageRolePage/ManageRole.vue'),
+      meta: { requiresAuth: false, roles: [] },
+    }
+  ]
+}
+
+
+const ResultTransfer = {
+  path: '/resulttransfer',
+  component: () => import('layouts/MainLayout.vue'),
+  children: [
+    {
+      path: '',
+      component: () => import('pages/ResultTransferPage/ResultTransfer.vue'),
+      meta: { requiresAuth: false, roles: [] },
+    }
+  ]
+}
+
 const routes = [
   {
     path: '/',
@@ -32,6 +94,11 @@ const routes = [
       },
     ]
   },
+  {...ManageData},
+  {...ManageRole},
+  {...ResultTransfer},
+  {...SaveData},
+  {...TransferData},
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),

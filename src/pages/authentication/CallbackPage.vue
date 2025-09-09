@@ -14,6 +14,7 @@ onMounted(async () => {
   //   alert('คุณไม่มีสิทธิ์เข้าใช้งานระบบ');
   //   await logout()
   // }
+
   await login();
   router.push("/");
 });

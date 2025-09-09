@@ -31,14 +31,16 @@ export default function useSystemUser() {
   });
   async function login(params) {
     if (keycloak.authenticated) {
-      if(keycloak.idTokenParsed.hr_business_area != 'C000'){
-        console.log(keycloak.idTokenParsed);
-        await keycloak.logout({
-            redirectUri: `${baseUrl}/authentication/login`,
-      });
-      } else {
-        localStorage.setItem("token", params)
-      }
+      console.log("success")
+      localStorage.setItem("token", params)
+      // if(keycloak.idTokenParsed.hr_business_area == 'C000'){
+      //   console.log(keycloak.idTokenParsed);
+      //   await keycloak.logout({
+      //       redirectUri: `${baseUrl}/authentication/login`,
+      // });
+      // } else {
+      //   localStorage.setItem("token", params)
+      // }
 
     }
     // return await api
