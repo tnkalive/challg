@@ -13,7 +13,6 @@ const url = "https://servicehub.pea.co.th:8443"
 
 const search_employee = async (params) => {
   $q.loading.show()
-  const token = localStorage.getItem('token')
   await api.get(url + `/get-employee-detail-s?emp_id=${params}`, {
     headers: {
       'apikey': process.env.API_KEY,

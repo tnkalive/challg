@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import SearchOT from 'components/SearchOt.vue'
+import SearchOT from 'src/components/SearchOT.vue'
 import { useQuasar } from "quasar";
 
 const $q = useQuasar();
@@ -32,14 +32,14 @@ const save_data = async () => {
   $q.loading.hide()
 }
 
-const column = [
+const columns = [
   // {
   //   name: 'index',
   //   label: '#',
   //   field: 'index'
   // },
   { name: 'หมายเลข OTC', align: 'center', label: 'หมายเลข OTC', field: 'otc_number', },
-  { name: 'รหัสค่าใช้จ่ายที่ยกเว้น', align: 'center', label: 'รหัสค่าใช้จ่ายที่ยกเว้น', field: 'otc_number', },
+  { name: 'รหัสค่าใช้จ่ายที่ยกเว้น', align: 'center', label: 'รหัสค่าใช้จ่ายที่ยกเว้น', field: 'exempted_expense', },
   { name: 'รายละเอียดประเภทค่าใช้จ่าย', align: 'center', label: 'รายละเอียดประเภทค่าใช้จ่าย', field: 'otc_number', },
   { name: 'สถานะ', align: 'center', label: 'status', field: 'สถานะ', },
 ]
@@ -50,8 +50,7 @@ const rows = [
     exempted_expense: 159,
     exempted_expense_types: 6.0,
     status: 6.0,
-  },
-
+  }
 ]
 
 </script>
@@ -62,7 +61,7 @@ const rows = [
     <div class="col-8">
       <q-card flat bordered dense>
         <q-card-section class="q-pa-sm bg-info text-white">
-          <q-icon name="engineering" size="32px" />เลื่อนระดับแรกบรรจุ นักวิชาการ (ระดับ 4 => 5)
+          <q-icon name="engineering" size="32px" />บันทึกข้อมูล OTC
         </q-card-section>
         <q-card-section>
           <div class="row q-col-gutter-md">
@@ -93,8 +92,8 @@ const rows = [
         </q-form>
       </q-card>
       <q-card flat bordered dense>
-        <q-table style="height: 400px" flat bordered title="Treats" :rows="rows" :columns="columns" row-key="index"
-          virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]" />
+        <q-table style="height: 400px" flat bordered title="ตารางข้อมูลค่าใช้จ่าย" :rows="rows" :columns="columns"
+          row-key="index" virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]" />
       </q-card>
     </div>
   </div>

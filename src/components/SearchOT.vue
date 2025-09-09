@@ -16,7 +16,6 @@ const url = "https://servicehub.pea.co.th:8443"
 
 const search_ot = async (params) => {
   $q.loading.show()
-  const token = localStorage.getItem('token')
   await api.get(url + `/get-request-ot-detail?requestid=${params}`, {
     headers: {
       'apikey': process.env.API_KEY,

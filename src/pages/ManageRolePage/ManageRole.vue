@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import SearchEmp from 'src/components/searchEmployee/SearchEmployee.vue'
 </script>
 
