@@ -1,10 +1,10 @@
 <script setup>
-import SearchEmp from 'src/components/searchEmployee/SearchEmployee.vue'
+// import SearchEmp from 'src/components/searchEmployee/SearchEmployee.vue'
 </script>
 
 
 <template>
-  <div class="row justify-center q-col-gutter-md q-mt-sm">
+  <!-- <div class="row justify-center q-col-gutter-md q-mt-sm">
     <div class="col-8">
       <q-card flat bordered dense>
         <q-card-section class="q-pa-sm bg-info text-white">
@@ -12,7 +12,7 @@ import SearchEmp from 'src/components/searchEmployee/SearchEmployee.vue'
         </q-card-section>
       </q-card>
     </div>
-  </div>
+  </div> -->
 </template>
 
 
