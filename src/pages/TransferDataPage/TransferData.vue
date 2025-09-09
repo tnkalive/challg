@@ -1,6 +1,6 @@
 <script setup>
 
-const column = [
+const columns = [
   // {
   //   name: 'index',
   //   label: '#',
